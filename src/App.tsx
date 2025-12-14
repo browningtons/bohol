@@ -469,7 +469,7 @@ export default function App() {
                     })}
                   </div>
                 </div>
-                
+
               {/* DATE SELECTOR */}
               <div className="flex overflow-x-auto pb-4 gap-2 no-scrollbar">
                 {DAYS.map(day => (
@@ -823,7 +823,6 @@ export default function App() {
         </nav>
       </div>
     </div>
-  </div>  
 
   );
 }
