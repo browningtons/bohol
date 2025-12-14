@@ -388,38 +388,6 @@ export default function App() {
 
   return (
   <div>
-    {/* ITINERARY LIST (data usage only) */}
-    <div className="space-y-4">
-      <h2 className="text-xl font-bold">Itinerary</h2>
-
-      {ITINERARY_DATA.map((item, index) => {
-        const Icon = item.icon;
-
-        return (
-          <div
-            key={index}
-            className="flex gap-4 rounded-lg border border-white/10 p-4"
-          >
-            <Icon className="h-5 w-5 text-white/70 mt-1" />
-
-            <div>
-              <div className="text-sm text-white/60">
-                {item.date} • {item.time}
-              </div>
-
-              <div className="font-semibold">
-                {item.title}
-              </div>
-
-              <div className="text-sm text-white/70">
-                {item.details}
-              </div>
-            </div>
-          </div>
-        );
-      })}
-    </div>
-
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
       
       {/* SIDEBAR (Desktop Fixed) */}
