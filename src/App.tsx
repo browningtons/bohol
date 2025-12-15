@@ -382,12 +382,9 @@ export default function App() {
         <div className="flex items-center gap-3 p-8 border-b border-[var(--border)]">
           <div className="bg-blue-600 p-2 rounded-xl shadow-sm">
             <img
-              src="/bohol-icon.png"
+              src={`${import.meta.env.BASE_URL}bohol-icon.png`}
               alt="Bohol Trip Icon"
               className="h-5 w-5"
-              onError={(e) => {
-                (e.currentTarget as HTMLImageElement).style.display = 'none';
-              }}
             />
           </div>
           <div>
