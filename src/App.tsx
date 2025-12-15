@@ -456,9 +456,9 @@ export default function App() {
           <div className="flex items-center gap-3">
             <div className="bg-blue-600 p-1.5 rounded-lg">
               <img
-                src="/bohol-icon.png"
-                alt="Bohol Trip Icon"
-                className="h-4 w-4"
+                src={`${import.meta.env.BASE_URL}bohol-icon.png`}
+                alt="Bohol 2026 Icon"
+                className="h-9 w-9 mr-2"
               />
             </div>
             <div>
