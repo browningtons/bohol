@@ -381,13 +381,13 @@ export default function App() {
       <aside className="hidden md:flex md:w-72 md:flex-col md:bg-white md:border-r md:border-[var(--border)] z-50 shadow-sm flex-shrink-0 h-full overflow-y-auto">
       <div className="flex items-center gap-3 p-6 border-b border-slate-100">
         <img
-          src={`${import.meta.env.BASE_URL}bohol-icon.png`}
-          alt="Bohol 2026 Icon"
+          src={`${import.meta.env.BASE_URL}panglao-icon.png`}
+          alt="Panglao 2026 Icon"
           className="h-12 w-12 drop-shadow-md"
         />
       
         <div>
-          <h1 className="font-bold text-lg">Bohol 2026</h1>
+          <h1 className="font-bold text-lg">Panglao 2026</h1>
           <p className="text-xs text-slate-500">Brown Brothers Trip</p>
         </div>
       </div>
@@ -451,21 +451,18 @@ export default function App() {
       <div className="flex-1 flex flex-col h-full overflow-hidden relative">
         
         {/* MOBILE HEADER */}
-        <header className="md:hidden bg-white/80 backdrop-blur-md p-4 border-b border-[var(--border)] z-30 flex items-center justify-between flex-shrink-0">
+        <header className="md:hidden bg-white p-4 border-b border-slate-200 sticky top-0 z-30 flex items-center justify-between shadow-sm">
           <div className="flex items-center gap-3">
-            <div className="bg-blue-600 p-1.5 rounded-lg">
-              <img
-                src={`${import.meta.env.BASE_URL}bohol-icon.png`}
-                alt="Bohol 2026 Icon"
-                className="h-9 w-9 mr-2"
-              />
-            </div>
-            <div>
-              <div className="font-bold text-[var(--heading-color)]">Bohol 2026</div>
-            </div>
+            <img
+              src={`${import.meta.env.BASE_URL}panglao-icon.png`}
+              alt="Panglao 2026 Icon"
+              className="h-10 w-10 drop-shadow-sm"
+            />
+            <span className="font-bold text-slate-800">Panglao 2026</span>
           </div>
-          <div className="bg-[var(--accent-primary)] text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg shadow-orange-500/20">
-            {daysLeft} Days
+        
+          <div className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-bold">
+            {daysLeft} Days To Go
           </div>
         </header>
 
@@ -764,7 +761,7 @@ export default function App() {
                 style={{border:0, display: 'block'}} 
                 allowFullScreen={true} 
                 loading="lazy" 
-                title="Bohol Map"
+                title="Panglao Map"
                 className="w-full h-full grayscale-[10%]"
                ></iframe>
             </div>
