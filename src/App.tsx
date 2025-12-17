@@ -17,15 +17,6 @@ interface MapLocation {
   desc: string;
 }
 
-// interface ItineraryItem {
-//   date: string;
-//   title: string;
-//   time: string;
-//   icon: React.ElementType;
-//   type: 'travel' | 'activity';
-//   details: string;
-// }
-
 interface WingmanSection {
   id: string;
   title: string;
@@ -59,12 +50,6 @@ interface Activity {
 }
 
 // --- DATA ---
-
-const ITINERARY_DATA: ItineraryItem[] = [
-  { date: "Fri, Dec 26", title: "Depart Salt Lake City", time: "12:32 PM", icon: Plane, type: "travel", details: "Frontier F9 4987 to SEA. Long layover before the big haul to MNL. Bring neck pillow." },
-  { date: "Sun, Dec 28", title: "The Arrival Gauntlet", time: "1:20 PM", icon: MapPin, type: "travel", details: "Land in Panglao (TAG) via MNL & DVO. Check into Napaling Airbnb." },
-  { date: "Tue, Jan 6", title: "Return Journey", time: "11:00 AM", icon: Plane, type: "travel", details: "TAG -> MNL (Danger Zone Layover) -> YVR -> SEA." },
-];
 
 const MAP_LOCATIONS: MapLocation[] = [
   // BASE
