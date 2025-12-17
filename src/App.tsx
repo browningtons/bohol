@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { 
-  Plane, Calendar, Gift, User, Coffee, Shield, 
-  Map as MapIcon, Utensils, Mountain, Anchor, 
-  AlertTriangle, MapPin,
-  CheckSquare, Coins, Wallet, 
-  Users, Car, Smartphone
+  Plane, MapPin, Calendar, Gift, User, Coffee, Shield, 
+  Map as MapIcon, Utensils, Mountain, Anchor, Sunset, 
+  Droplet, Heart, AlertTriangle, ArrowRight, CloudRain, 
+  Sun, Thermometer, CheckSquare, Banknote, Coins, Wallet, 
+  Users, Clock, Car, Smartphone, ShoppingBag, Info,
+  Target, Crosshair, Navigation, X, ZoomIn, ZoomOut,
+  ExternalLink
 } from 'lucide-react';
+
+// --- TYPES ---
 
 interface MapLocation {
   id: string;
@@ -16,14 +20,14 @@ interface MapLocation {
   desc: string;
 }
 
-// interface ItineraryItem {
-//   date: string;
-//   title: string;
-//   time: string;
-//   icon: React.ElementType;
-//   type: 'travel' | 'activity';
-//   details: string;
-// }
+interface ItineraryItem {
+  date: string;
+  title: string;
+  time: string;
+  icon: React.ElementType;
+  type: 'travel' | 'activity';
+  details: string;
+}
 
 interface WingmanSection {
   id: string;
@@ -286,16 +290,24 @@ interface FlightLegProps {
   isLayover?: string;
   departTime?: string;
   arriveTime?: string;
+  traveler?: string; // New prop for traveler assignment
 }
 
-function FlightLeg({ from, to, flight, duration, alert, isLayover, departTime, arriveTime }: FlightLegProps) {
+function FlightLeg({ from, to, flight, duration, alert, isLayover, departTime, arriveTime, traveler }: FlightLegProps) {
   return (
     <div className="relative pl-6 pb-6 border-l-2 border-slate-200 last:border-0 last:pb-0">
       <div className={`absolute -left-[9px] top-0 w-4 h-4 rounded-full border-2 ${alert ? 'bg-red-100 border-red-500' : 'bg-white border-[var(--accent-secondary)]'}`}></div>
       
       <div className="flex justify-between items-start">
         <div>
-          <div className="font-bold text-[var(--heading-color)] text-sm">{from} <span className="text-slate-300">→</span> {to}</div>
+          <div className="flex items-center gap-2">
+            <div className="font-bold text-[var(--heading-color)] text-sm">{from} <span className="text-slate-300">→</span> {to}</div>
+            {traveler && (
+              <span className="text-[10px] font-bold bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded border border-purple-200">
+                {traveler}
+              </span>
+            )}
+          </div>
           <div className="text-xs text-[var(--muted)] font-mono mt-0.5">{flight}</div>
         </div>
         <div className="text-right">
@@ -379,18 +391,13 @@ export default function App() {
       
       {/* SIDEBAR (Desktop Fixed) */}
       <aside className="hidden md:flex md:w-72 md:flex-col md:bg-white md:border-r md:border-[var(--border)] z-50 shadow-sm flex-shrink-0 h-full overflow-y-auto">
-      <div className="flex items-center gap-3 p-6 border-b border-slate-100">
-        <img
-          src={`${import.meta.env.BASE_URL}panglao-icon.png`}
-          alt="Panglao 2026 Icon"
-          className="h-12 w-12 drop-shadow-md"
-        />
-      
-        <div>
-          <h1 className="font-bold text-lg">Panglao 2026</h1>
-          <p className="text-xs text-slate-500">Brown Brothers Trip</p>
+        <div className="flex items-center gap-3 p-8 border-b border-[var(--border)]">
+          <div className="bg-[var(--heading-color)] text-white p-2.5 rounded-xl shadow-lg shadow-blue-900/20"><Plane size={24} /></div>
+          <div>
+            <h1 className="font-bold text-xl text-[var(--heading-color)] tracking-tight">Bohol 2026</h1>
+            <p className="text-xs font-medium text-[var(--accent-secondary)] uppercase tracking-wider">Brown Brothers Trip</p>
+          </div>
         </div>
-      </div>
         <nav className="flex-1 p-6 space-y-2">
           {['itinerary', 'activities', 'culture', 'map'].map((tab) => (
             <React.Fragment key={tab}>
@@ -451,18 +458,15 @@ export default function App() {
       <div className="flex-1 flex flex-col h-full overflow-hidden relative">
         
         {/* MOBILE HEADER */}
-        <header className="md:hidden bg-white p-4 border-b border-slate-200 sticky top-0 z-30 flex items-center justify-between shadow-sm">
+        <header className="md:hidden bg-white/80 backdrop-blur-md p-4 border-b border-[var(--border)] z-30 flex items-center justify-between flex-shrink-0">
           <div className="flex items-center gap-3">
-            <img
-              src={`${import.meta.env.BASE_URL}panglao-icon.png`}
-              alt="Panglao 2026 Icon"
-              className="h-10 w-10 drop-shadow-sm"
-            />
-            <span className="font-bold text-slate-800">Panglao 2026</span>
+            <div className="bg-[var(--heading-color)] text-white p-2 rounded-lg"><Plane size={18} /></div>
+            <div>
+              <div className="font-bold text-[var(--heading-color)]">Bohol 2026</div>
+            </div>
           </div>
-        
-          <div className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-bold">
-            {daysLeft} Days To Go
+          <div className="bg-[var(--accent-primary)] text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg shadow-orange-500/20">
+            {daysLeft} Days
           </div>
         </header>
 
@@ -487,10 +491,22 @@ export default function App() {
                       <span className="text-xs font-bold font-mono bg-[#2CB6C0]/10 text-[var(--accent-secondary)] px-2.5 py-1 rounded">Dec 26-28</span>
                     </div>
                     <div className="space-y-2">
-                      <FlightLeg from="Seattle (SEA)" to="Manila (MNL) T1" flight="PR125" duration="14h 35m" departTime="9:30 PM (Dec 26)" />
+                      <FlightLeg 
+                        from="Domestic Origin" to="Seattle (SEA)" 
+                        flight="Frontier F9 1234" 
+                        duration="2h 30m" 
+                        departTime="4:00 PM (Dec 26)"
+                        traveler="Paul Only"
+                      />
+                      <FlightLeg 
+                        from="Seattle (SEA)" to="Manila (MNL) T1" 
+                        flight="PR125" 
+                        duration="14h 35m" 
+                        departTime="9:30 PM (Dec 26)" 
+                        isLayover="Layover: 4h 45m (Terminal Transfer T1 -> T2)"
+                      />
                       <FlightLeg 
                         from="Manila (MNL) T2" to="Davao (DVO)" flight="PR2813" duration="1h 55m" 
-                        isLayover="Layover: 4h 45m (Terminal Transfer T1 -> T2)" 
                       />
                       <FlightLeg 
                         from="Davao (DVO)" to="Bohol-Panglao (TAG)" flight="PR2372" duration="1h 00m" 
@@ -537,6 +553,13 @@ export default function App() {
                       <FlightLeg 
                         from="Vancouver (YVR)" to="Seattle (SEA)" flight="AS2122" duration="1h 06m" 
                         isLayover="Layover: 3h 40m" 
+                      />
+                      <FlightLeg 
+                        from="Seattle (SEA)" to="Home" 
+                        flight="Delta DL 5678" 
+                        duration="4h 15m" 
+                        departTime="8:00 AM (Jan 7)"
+                        traveler="Paul Only"
                       />
                     </div>
                  </div>
@@ -761,7 +784,7 @@ export default function App() {
                 style={{border:0, display: 'block'}} 
                 allowFullScreen={true} 
                 loading="lazy" 
-                title="Panglao Map"
+                title="Bohol Map"
                 className="w-full h-full grayscale-[10%]"
                ></iframe>
             </div>
