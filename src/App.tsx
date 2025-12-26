@@ -456,12 +456,15 @@ export default function App() {
             <img
               src="/panglao-icon.png"
               alt="Panglao"
-              className="h-9 w-9"
+              className="h-11 w11"
             />
             <div>
-              <div className="font-bold text-[var(--heading-color)]">Bohol 2026</div>
+              <div className="font-bold text-[var(--heading-color)]">
+                Panglao 2026
+              </div>
             </div>
           </div>
+
           <div className="bg-[var(--accent-primary)] text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg shadow-orange-500/20">
             {daysLeft} Days
           </div>
@@ -814,23 +817,36 @@ export default function App() {
         </main>
 
         {/* MOBILE NAV BOTTOM */}
-        <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-[var(--border)] flex justify-around p-2 pb-safe z-40 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+        <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-[var(--border)] flex justify-around p-2 pb-safe z-40 shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
           {['itinerary', 'activities', 'culture', 'map'].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`flex flex-col items-center p-2 rounded-xl transition-all duration-300 ${
-                activeTab === tab ? 'text-[var(--accent-primary)] scale-110 -translate-y-1' : 'text-slate-400'
+                activeTab === tab
+                  ? 'text-[var(--accent-primary)] scale-110 -translate-y-1'
+                  : 'text-slate-400'
               }`}
             >
-              {tab === 'itinerary' && <Plane size={20} className={activeTab === tab ? "fill-current" : ""} />}
-              {tab === 'activities' && <Calendar size={20} className={activeTab === tab ? "fill-current" : ""} />}
-              {tab === 'culture' && <Gift size={20} className={activeTab === tab ? "fill-current" : ""} />}
-              {tab === 'map' && <MapIcon size={20} className={activeTab === tab ? "fill-current" : ""} />}
-              <span className="text-[9px] font-bold mt-1 capitalize tracking-tight">{tab === 'culture' ? 'Intel' : tab}</span>
+              {/* ICONS */}
+              {tab === 'itinerary' && (
+                <img
+                  src="/panglao-icon.png"
+                  alt="Panglao"
+                  className="h-6 w-6"
+                />
+              )}
+              {tab === 'activities' && <Calendar size={20} />}
+              {tab === 'culture' && <Gift size={20} />}
+              {tab === 'map' && <MapIcon size={20} />}
+
+              <span className="text-[9px] font-bold mt-1 capitalize tracking-tight">
+                {tab === 'culture' ? 'Intel' : tab}
+              </span>
             </button>
           ))}
         </nav>
+
       </div>
     </div>
   );
